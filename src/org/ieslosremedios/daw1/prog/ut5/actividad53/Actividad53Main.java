@@ -8,19 +8,29 @@ public class Actividad53Main {
          * el valor del número.
          * */
         // Creamos el array de numeros enteros
-        Integer[] enteros={1,2,6,7,3,9,20,13,15};
+        Integer[] enteros={2,7,1,2,6,7,1,3,9,20,13,1,20};
 
-        // Creamos un objeto map
-        Map<Integer,Integer> mapaCount=new TreeMap<>();
-        for (Integer numero :
-                enteros) {
-            if(mapaCount.containsKey(numero)){
-                mapaCount.put(numero,mapaCount.get(numero+1));
-            }else{
-                mapaCount.put(numero,1);
-            }
+        // Invocamos el metodo creado
+        numOcurrencias(enteros);
+
+    }
+    public static void numOcurrencias(Integer[] numeros){
+        Map<Integer,Integer> mapaNuevo=new TreeMap<Integer,Integer>();
+        for (int i = 0; i < numeros.length; i++) {
+            int numKey=numeros[i];
+            if(mapaNuevo.containsKey(numKey)){
+                int contadorKey=mapaNuevo.get(numKey);
+                contadorKey++;
+                mapaNuevo.put(numKey,contadorKey);
+            }else
+                mapaNuevo.put(numKey,1);
         }
-        System.out.println(mapaCount);
+
+        Iterator<Integer> iter=mapaNuevo.keySet().iterator();
+        while (iter.hasNext()){
+            Integer nKey=iter.next();
+            System.out.println("El valor "+nKey+ " se encuentra "+mapaNuevo.get(nKey));
+        }
     }
 
 }
